@@ -551,24 +551,24 @@
                     </div>
 
                     <div class="col-lg-8" data-aos="fade-up" data-aos-delay="300">
-                        <form action="#" class="row g-lg-3 gy-3">
-                            <div class="form-group col-md-6">
-                                <input type="text" class="form-control" placeholder="Enter your name">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <input type="email" class="form-control" placeholder="Enter your email">
-                            </div>
-                            <div class="form-group col-12">
-                                <input type="text" class="form-control" placeholder="Enter subject">
-                            </div>
-                            <div class="form-group col-12">
-                                <textarea name="" rows="4" class="form-control"
-                                    placeholder="Enter your message"></textarea>
-                            </div>
-                            <div class="form-group col-12 d-grid">
-                                <button type="submit" class="btn btn-brand">Contact me</button>
-                            </div>
-                        </form>
+                        <form action="submit.php" method="POST" class="row g-lg-3 gy-3">
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control" name="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="email" class="form-control" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group col-12">
+                            <input type="tel" class="form-control" name="mobile" placeholder="Enter Mob. No." pattern="[0-9]{10}"
+                                required>
+                        </div>
+                        <div class="form-group col-12">
+                            <textarea name="message" rows="4" class="form-control" placeholder="Enter your message" required></textarea>
+                        </div>
+                        <div class="form-group col-12 d-grid">
+                            <button type="submit" class="btn btn-brand">Contact me</button>
+                        </div>
+                    </form>
                     </div>
                 </div>
 
