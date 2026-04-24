@@ -1,659 +1,532 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raushan Gupta | Portfolio</title>
-    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/css/aos.css">
-    <link rel="stylesheet" href="./assets/css/line-awesome.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="icon" href="/assets/images/my-dp.png" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raushan Gupta | Portfolio</title>
+<link rel="icon" href="/assets/images/my-dp.png" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0f;
+  --bg2:#111118;
+  --bg3:#1a1a24;
+  --surface:#1e1e2a;
+  --surface2:#252535;
+  --accent:#7c5cfc;
+  --accent2:#a78bfa;
+  --accent3:#f472b6;
+  --text:#f0eeff;
+  --text2:#9d9ab5;
+  --text3:#5c5a72;
+  --border:#2a2a3d;
+  --border2:#3a3a55;
+  --font-head:'Syne',sans-serif;
+  --font-body:'Space Grotesk',sans-serif;
+  --glow:0 0 40px rgba(124,92,252,0.15);
+  --radius:16px;
+  --radius-sm:10px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.7;overflow-x:hidden}
+
+/* scrollbar */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px}
+
+/* NOISE OVERLAY */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");opacity:.4;pointer-events:none;z-index:0}
+
+/* NAVBAR */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.2rem 2rem;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px);background:rgba(10,10,15,0.85);border-bottom:1px solid rgba(124,92,252,0.08)}
+.nav-logo{font-family:var(--font-head);font-size:1.4rem;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-0.03em}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:.9rem;font-weight:500;letter-spacing:.03em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--accent2)}
+.nav-mobile-btn{display:none;background:none;border:1px solid var(--border2);color:var(--text);padding:.5rem .7rem;border-radius:8px;cursor:pointer;font-size:1rem}
+
+/* HERO */
+#home{min-height:100vh;display:flex;align-items:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.18}
+.hero-orb1{width:600px;height:600px;background:var(--accent);top:-200px;right:-150px}
+.hero-orb2{width:400px;height:400px;background:var(--accent3);bottom:-100px;left:-100px}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:.15}
+.hero-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;width:100%}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(124,92,252,.12);border:1px solid rgba(124,92,252,.3);color:var(--accent2);font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.4rem 1rem;border-radius:50px;margin-bottom:1.5rem}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+h1.hero-name{font-family:var(--font-head);font-size:clamp(2.5rem,6vw,5rem);font-weight:800;line-height:1.05;letter-spacing:-.04em;margin-bottom:1rem;color:var(--text)}
+h1.hero-name span{color:var(--accent)}
+.hero-subtitle{font-size:clamp(1rem,2.5vw,1.3rem);color:var(--text2);max-width:540px;margin-bottom:2.5rem;line-height:1.6}
+#dynamic-text{color:var(--accent2);font-style:italic}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:#fff;padding:.85rem 2rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.95rem;transition:all .25s;border:2px solid var(--accent);display:inline-block}
+.btn-primary:hover{background:transparent;color:var(--accent2)}
+.btn-outline{background:transparent;color:var(--text);padding:.85rem 2rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.95rem;transition:all .25s;border:2px solid var(--border2);display:inline-block}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent2)}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--text3);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;z-index:1}
+.scroll-line{width:1px;height:50px;background:linear-gradient(var(--accent),transparent);animation:scrollDown 2s ease-in-out infinite}
+@keyframes scrollDown{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}50.01%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* SECTIONS */
+section{padding:7rem 2rem;position:relative}
+.container{max-width:1100px;margin:0 auto}
+.section-label{font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}
+.section-title{font-family:var(--font-head);font-size:clamp(1.8rem,4vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:3rem;color:var(--text)}
+.section-title em{color:var(--accent2);font-style:normal}
+
+/* SERVICES */
+#services{background:var(--bg2)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.service-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;position:relative;overflow:hidden;transition:all .3s;cursor:default}
+.service-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,92,252,.06),transparent);opacity:0;transition:opacity .3s}
+.service-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:var(--glow)}
+.service-card:hover::before{opacity:1}
+.service-icon{width:52px;height:52px;background:rgba(124,92,252,.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--accent);margin-bottom:1.5rem}
+.service-card h3{font-family:var(--font-head);font-size:1.15rem;font-weight:700;margin-bottom:.75rem;color:var(--text)}
+.service-card p{color:var(--text2);font-size:.9rem;line-height:1.65;margin-bottom:1.25rem}
+.service-card a{color:var(--accent2);font-size:.85rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;transition:gap .2s}
+.service-card a:hover{gap:.6rem}
+
+/* WORK */
+#work{background:var(--bg)}
+.work-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
+.work-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .3s}
+.work-card:hover{border-color:var(--accent);transform:translateY(-5px);box-shadow:var(--glow)}
+.work-card-img{aspect-ratio:16/9;overflow:hidden;background:var(--bg3)}
+.work-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.work-card:hover .work-card-img img{transform:scale(1.05)}
+.work-card-body{padding:1.5rem}
+.work-card-body h3{font-family:var(--font-head);font-size:1.05rem;font-weight:700;margin-bottom:.5rem;color:var(--text)}
+.work-card-body p{color:var(--text2);font-size:.87rem;line-height:1.6;margin-bottom:1rem}
+.work-card-body a{color:var(--accent2);font-size:.83rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;transition:gap .2s}
+.work-card-body a:hover{gap:.6rem}
+.work-tag{display:inline-block;background:rgba(124,92,252,.12);color:var(--accent2);font-size:.72rem;font-weight:600;letter-spacing:.06em;padding:.25rem .7rem;border-radius:50px;margin-bottom:.75rem;text-transform:uppercase}
+
+/* ABOUT */
+#about{background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
+.about-bio{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;margin-bottom:1.5rem}
+.about-bio p{color:var(--text2);line-height:1.75}
+.skills-section h3{font-family:var(--font-head);font-size:1rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem}
+.skills-wrap{display:flex;flex-wrap:wrap;gap:.6rem}
+.skill-pill{background:var(--surface);border:1px solid var(--border);color:var(--text2);font-size:.83rem;font-weight:500;padding:.4rem 1rem;border-radius:50px;transition:all .2s}
+.skill-pill:hover{border-color:var(--accent);color:var(--accent2);background:rgba(124,92,252,.08)}
+
+/* EDUCATION */
+.edu-list{display:flex;flex-direction:column;gap:1rem}
+.edu-item{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:1.5rem;transition:all .25s}
+.edu-item:hover{border-left-color:var(--accent3);background:var(--surface2)}
+.edu-item h4{font-family:var(--font-head);font-size:1rem;font-weight:700;margin-bottom:.3rem;color:var(--text)}
+.edu-meta{font-size:.82rem;color:var(--accent2);margin-bottom:.3rem;font-weight:600}
+.edu-item p{color:var(--text2);font-size:.87rem}
+
+/* EXPERIENCE */
+#experience{background:var(--bg)}
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--accent),var(--accent2),transparent)}
+.tl-item{position:relative;padding-bottom:3rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-2.45rem;top:.35rem;width:14px;height:14px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);box-shadow:0 0 12px var(--accent)}
+.tl-content{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.75rem;transition:all .3s}
+.tl-content:hover{border-color:var(--accent);box-shadow:var(--glow)}
+.tl-date{font-size:.78rem;font-weight:700;letter-spacing:.08em;color:var(--accent2);text-transform:uppercase;margin-bottom:.5rem}
+.tl-role{font-family:var(--font-head);font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
+.tl-company{font-size:.87rem;color:var(--text3);margin-bottom:.2rem;font-weight:500}
+.tl-location{font-size:.82rem;color:var(--text3);margin-bottom:.75rem;display:flex;align-items:center;gap:.3rem}
+.tl-desc{color:var(--text2);font-size:.9rem;line-height:1.65;margin-bottom:1rem}
+.tl-link{display:inline-flex;align-items:center;gap:.4rem;background:rgba(124,92,252,.1);border:1px solid rgba(124,92,252,.3);color:var(--accent2);font-size:.8rem;font-weight:600;padding:.4rem 1rem;border-radius:50px;text-decoration:none;transition:all .2s}
+.tl-link:hover{background:rgba(124,92,252,.2)}
+
+/* CONTACT */
+#contact{background:var(--bg2)}
+.contact-wrapper{max-width:640px;margin:0 auto;text-align:center}
+.contact-wrapper .section-title{margin-bottom:1rem}
+.contact-sub{color:var(--text2);margin-bottom:3rem;font-size:1rem}
+.contact-form{text-align:left;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+@media(max-width:600px){.form-row{grid-template-columns:1fr}}
+.form-group{margin-bottom:1rem}
+.form-group input,.form-group textarea{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);font-family:var(--font-body);font-size:.93rem;padding:.85rem 1.1rem;border-radius:var(--radius-sm);outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent)}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--text3)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-submit{width:100%;background:var(--accent);color:#fff;border:none;font-family:var(--font-body);font-size:1rem;font-weight:600;padding:1rem;border-radius:50px;cursor:pointer;transition:all .25s}
+.form-submit:hover{background:var(--accent2);transform:translateY(-2px)}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:2.5rem 2rem}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-copy{color:var(--text3);font-size:.87rem}
+.footer-copy a{color:var(--accent2);text-decoration:none;font-weight:600}
+.social-icons{display:flex;gap:.75rem}
+.social-icons a{width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:var(--surface);border:1px solid var(--border);border-radius:50%;color:var(--text2);font-size:.9rem;text-decoration:none;transition:all .2s}
+.social-icons a:hover{border-color:var(--accent);color:var(--accent);background:rgba(124,92,252,.1)}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay1{transition-delay:.1s}
+.reveal-delay2{transition-delay:.2s}
+.reveal-delay3{transition-delay:.3s}
+
+/* MOBILE NAV */
+@media(max-width:768px){
+  .nav-links{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(10,10,15,.97);backdrop-filter:blur(20px);flex-direction:column;padding:1.5rem;border-bottom:1px solid var(--border);gap:1rem}
+  .nav-links.open{display:flex}
+  .nav-mobile-btn{display:block}
+  .hero-orb1{width:300px;height:300px}
+  .hero-orb2{width:250px;height:250px}
+}
+</style>
 </head>
+<body>
 
-<body data-bs-spy="scroll" data-bs-target=".navbar">
-<!-- 🔥 ADD THIS -->
-<canvas id="bg"></canvas>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <div class="container flex-lg-column">
-            <a class="navbar-brand mx-lg-auto mb-lg-4" href="#">
-                <span class="h3 fw-bold d-block d-lg-none">Portfolio</span>
-                <img src="./assets/images/my-dp.png" class="d-none d-lg-block rounded-circle" alt="">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto flex-lg-column text-lg-center">
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo">RK<span>.</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-mobile-btn" id="navBtn">&#9776;</button>
+</nav>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#work">Work</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
-                    </li> -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- //NAVBAR -->
-
-    <!-- CONTENT WRAPPER -->
-    <div id="content-wrapper">
-
-        <!-- HOME -->
-        <section id="home" class="full-height px-lg-5">
-  <h1 class="glow white">👋 Raushan Kumar Gupta</h1>
-            
-            <div class="container">
-
-                <div class="row">
-                    <div class="col-lg-10">
-
-                        <h2 class="display-4 fw-bold "> <span class="text-brand fs-1 " id="dynamic-text"></span></h2>
-
-                        <!-- <p class="lead mt-2 mb-4">I am Raushan Kumar Gupta, and I develop high-performing and scalable
-                            websites.</p> -->
-                        <div>
-                            <a href="#work" class="btn btn-brand me-3">Explore My Work</a>
-                            <a href="https://drive.google.com/file/d/1Qw_T4dSYgsvusaSkX8GGEp49cC4ZOA-5/view?usp=sharing"
-                                target="_blank" class="btn btn-brand" download> Download Resume</a>
-                        </div>
-                    </div>
-
-
-
-
-
-                </div>
-            </div>
-
-        </section>
-        <!-- //HOME -->
-
-        <!-- SERVICES -->
-        <section id="services" class="full-height px-lg-5">
-            <div class="container">
-
-                <div class="row pb-4" data-aos="fade-up">
-                    <div class="col-lg-8">
-                        <h6 class="text-brand">SERVICES</h6>
-                        <h1>Services That I Provide</h1>
-                    </div>
-                </div>
-
-                <div class="row gy-4">
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
-                        <div class="service p-4 bg-base rounded-4 shadow-effect">
-                            <div class="iconbox rounded-4">
-                                <i class="las la-laptop-code"></i>
-                            </div>
-                            <h5 class="mt-4 mb-2">Web Development</h5>
-                            <p>i develop user intracting and responsive design which looks better and quality design.
-                            </p>
-                            <a href="https://www.linkedin.com/in/theraushan-kumar-gupta" class="link-custom">Read
-                                More</a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="service p-4 bg-base rounded-4 shadow-effect">
-                            <div class="iconbox rounded-4">
-                                <i class="las la-toolbox"></i>
-                            </div>
-                            <h5 class="mt-4 mb-2">Canva</h5>
-                            <p>I design stunning visuals on Canva, creating professional graphics for social media.</p>
-                            <a href="https://www.canva.com/design/DAGYl3-WknE/MRQ1iPoEGDyyRyPY3lGiDg/edit?utm_content=DAGYl3-WknE&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
-                                target="_blank" class="link-custom">Read More</a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="service p-4 bg-base rounded-4 shadow-effect">
-                            <div class="iconbox rounded-4">
-                                <i class="las la-people-carry"></i>
-                            </div>
-                            <h5 class="mt-4 mb-2">Campus Ambassador</h5>
-                            <p>I design stunning visuals on Canva, creating professional graphics for social media.
-                            </p>
-                            <a href="https://www.linkedin.com/posts/theraushan-kumar-gupta_hey-everyone-i-am-happy-to-share-that-activity-7108124156604379138-ktup?utm_source=share&utm_medium=member_android&rcm=ACoAAD__iUsBNJe3v-W7hDyyy-CNjSZ3pRxiVmE"
-                                target="_blank" class="link-custom">Read More</a>
-                        </div>
-                    </div>
-
-
-                </div>
-
-            </div>
-        </section>
-        <!-- SERVICES -->
-
-        <!-- WORK -->
-        <section id="work" class="full-height px-lg-5">
-            <div class="container">
-
-                <div class="row pb-4" data-aos="fade-up">
-                    <div class="col-lg-8">
-                        <h6 class="text-brand">WORK</h6>
-                        <h1>My Recent Projects</h1>
-                    </div>
-                </div>
-
-                <div class="row gy-4">
-
-                    <div class="col-md-6" data-aos="fade-up">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/project1.png" alt="">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h4>Talent Synergy Solutions</h4>
-                                <p>Talent Synergy is a premier talent consulting firm specializing in workforce
-                                    optimization and strategic HR solutions to
-                                    drive business success.</p>
-                                <a href="https://talent-synergy.com/" target="_blank" class="link-custom">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/project2.png" alt="">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h4>Diamond Star Group</h4>
-                                <p>The Diamond Star Group is a coalition of companies committed to revolutionize the
-                                    recycling industry through innovative technology.</p>
-                                <a href="https://diamondstargrp.com/en/" target="_blank" class="link-custom">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6" data-aos="fade-up">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/project3.png" alt="">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h4>SeS IT Ecommerce</h4>
-                                <p>"SesIT Ecomm" is an e-commerce web app with features like product browsing, and order
-                                    tracking. It offers a user-friendly
-                                    online shopping experience.</p>
-                                <a href="https://raushangrkg123.github.io/Ses-IT-project-/" target="_blank" class="link-custom">Read
-                                    More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/project4.png" alt="">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h4>Swastih Digital Pvt. Ltd.</h4>
-                                <p>Better Solutions For Your Problems
-                                    We are team of talented people making solutions for your problems with Swastih
-                                    Digital Private Limited
-                                    Better.</p>
-                                <a href="https://www.swastihdigital.com/" target="_blank" class="link-custom">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/project5.png" alt="">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h4>Octanet Landing Page</h4>
-                                <p>This project was alloted by Octanet Services Pvt. Ltd. where I created a landing page
-                                    through Technology. i used
-                                    Bootstrap 5 in this project.</p>
-                                <a href="https://raushangrkg123.github.io/OCTANET_AUGUST/" target="_blank" class="link-custom">Read
-                                    More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/project6.png" alt="">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <h4>TO-DO List</h4>
-                                <p>This is a to do list where you can add update and delete your task.This project was
-                                    made by boostrap framework.</p>
-                                <a href="https://raushangrkg123.github.io/TO-DO-LIST/" target="_blank" class="link-custom">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-        <!-- //WORK -->
-
-        <!-- ABOUT -->
-        <section id="about" class="full-height px-lg-5">
-            <div class="container">
-                <div class="row pb-4" data-aos="fade-up">
-                    <div class="col-lg-8">
-                         <div class="card">
-    <h2>About Me</h2>
-    <p>
-      Software Developer with experience in Laravel, PHP, frontend, and AI.
-      Worked on government projects (WCD, Defence portals).
-    </p>
+<!-- HOME -->
+<section id="home">
+  <div class="hero-bg">
+    <div class="hero-orb hero-orb1"></div>
+    <div class="hero-orb hero-orb2"></div>
+    <div class="hero-grid"></div>
   </div>
-   </section>
-
-                        
-        <section id="reviews" class="full-height px-lg-5">
-            <div class="container mt-5">
-                          <div class="card skills">
-    <h3>Skills</h3>
-
-    <!-- 🔥 ADD / REMOVE SKILLS -->
-    <span>Laravel</span>
-    <span>PHP</span>
-    <span>JavaScript</span>
-    <span>Bootstrap</span>
-    <span>HTML</span>
-    <span>CSS</span>
-    <span>PostgreSQL</span>
-  </div>
-                    </div>
-                </div>
-                 </div>
-        </section>
-
-                <div class="row gy-5">
-                    <!-- Left Column: Education -->
-                    
-                    <div class="col-lg-6">
-                        <h3 class="mb-4" data-aos="fade-up" data-aos-delay="300">Education</h3>
-                        <div class="row gy-4">
-                            <!-- Bachelor Of Technology -->
-                            <div class="col-12" data-aos="fade-up" data-aos-delay="600">
-                                <div class="bg-base p-4 rounded-4 shadow-effect border-left">
-                                    <h4>Bachelor Of Technology</h4>
-                                    <p class="text-brand mb-2">SISTec, Ratibad, Bhopal (2020 - 2024)</p>
-                                    <p class="mb-0">Electronics & Communication Engg.</p>
-                                    <p>CGPA: 8.52</p>
-                                </div>
-                            </div>
-
-                            <!-- Class XII -->
-                            <div class="col-12" data-aos="fade-up" data-aos-delay="600">
-                                <div class="bg-base p-4 rounded-4 shadow-effect border-left">
-                                    <h4>Class XII</h4>
-                                    <p class="text-brand mb-2">Jagdam College, Bihar (2018 - 2020)</p>
-                                    <p>Maths</p>
-                                    <p class="mb-0">82.8%</p>
-                                </div>
-                            </div>
-
-                            <!-- Class X -->
-                            <div class="col-12" data-aos="fade-up" data-aos-delay="600">
-                                <div class="bg-base p-4 rounded-4 shadow-effect border-left">
-                                    <h4>Class X</h4>
-                                    <p class="text-brand mb-2">Marhaura High School, Bihar (2017 - 2018)</p>
-                                    <p>Science</p>
-                                    <p class="mb-0">76.2%</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </section>
-        <!-- //ABOUT -->
-
-        <!-- EXPERIENCE -->
-        <section id="reviews" class="full-height px-lg-5">
-            <div class="container mt-5">
-                <h1> Experiance</h1>
-                <h3 class="text-center mb-4" data-aos="fade-up" data-aos-delay="300">Experience Timeline</h3>
-                <div class="row justify-content-center " data-aos="fade-up">
-                    <div class="col-md-8">
-                        <div class="timeline">
-                            <!-- ----------------2026--------------- -->
-                             <div class="timeline-item" data-aos="fade-up" data-aos-delay="600">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <h4>Jan 2026 - Present</h4>
-                                    <h5>Software Developer</h5>
-                                    <p class="text-muted">Silver Touch Technologies Ltd. </p>
-                                    <p>New Delhi, Delhi India · On-site</p>
-                                    <p>Working as a Software Developer at the Ministry of Women and Child Development (WCD) under the Ministry of Home Affairs. I contribute to the development, maintenance, and real-time management of government web applications, ensuring secure, reliable, and efficient digital services for public platforms.</p>
-                                    <a href="https:https://www.linkedin.com/feed/update/urn:li:activity:7438510980940156929/"
-                                        target="_blank" rel="noopener noreferrer">
-                                        <div class="btn border-primary text-primary p-2 ">Know More</div>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- --------2025----- -->
-                             <div class="timeline-item" data-aos="fade-up" data-aos-delay="600">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <h4>May 2025 - Jan 2026</h4>
-                                    <h5>Software Developer</h5>
-                                    <p class="text-muted">Akal Info. Systems Ltd.</p>
-                                    <p>New Delhi, Delhi India · On-site</p>
-                                    <p>Worked as a Web Developer on the Gallantry Awards Portal(https://www.gallantryawards.gov.in/) at the Ministry of Defence (NIC) client location. Contributed to development, maintenance, and optimization of the portal, ensuring reliable performance and secure handling of data for government operations.</p>
-                                    <a href="https://www.gallantryawards.gov.in/"
-target="_blank" rel="noopener noreferrer">                        
-                                        <div class="btn border-primary text-primary p-2 ">Know More</div>
-                                    </a>
-                                </div>
-                            </div>
-                            
-                           
-                            <!-- Year 2 -->
-                            <div class="timeline-item " data-aos="fade-up" data-aos-delay="600">
-                                <div class="timeline-dot "></div>
-                                <div class="timeline-content">
-                                    <h4>Feb 2024 to March 2025</h4>
-                                    <h5>Web Developer</h5>
-                                    <p class="text-muted">Swastih Digital Private Limited · Internship</p>
-                                    <p>Bhopal, Madhya Pradesh, India · On-site</p>
-                                    <p>Worked as a Team Lead and I gained technical experience. I worked on web
-                                        development, focusing on building responsive
-                                        websites and conducted interviews, gaining.</p>
-                                    <a href="https://drive.google.com/file/d/1-oNRFqDh5V_yOnuSzs-wF9aq7It7UUq9/view?usp=drivesdk&usp=embed_facebook&usp=embed_facebook"
-                                        target="_blank" rel="noopener noreferrer">
-                                        <div class="btn border-primary text-primary p-2 ">Know More</div>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Year 3 -->
-                            <div class="timeline-item" data-aos="fade-up" data-aos-delay="600">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <h4>Dec 2023 - May 2024</h4>
-                                    <h5>Supporting Diatoms for a cooler tommorow</h5>
-                                    <p class="text-muted">Liquid Trees · Internship</p>
-                                    <p>India · Remote </p>
-                                    <p>keeping the Planet cool with Diatoms is a campaign focused on raising awareness
-                                        about the potential that Micro algae or
-                                        Diatoms have in CO2 removal and Bioremediation.</p>
-
-                                    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7159206441084448768?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3Bu0xT0mIlRwGdDPU%2BEg1O9w%3D%3D"
-                                        target="_blank" rel="noopener noreferrer">
-                                        <div class="btn border-primary text-primary p-2 ">Know More</div>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Year 4 -->
-                            <div class="timeline-item" data-aos="fade-up" data-aos-delay="600">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <h4>Oct 2023 - Dec 2023</h4>
-                                    <h5>Campus Ambassador</h5>
-                                    <p class="text-muted">Metakraft AI · Internship</p>
-                                    <p>Bengaluru, Karnataka, India · Remote</p>
-                                    <p>Learned Graphics Designing & Prompt Engineering. As an prompt intern i learnt
-                                        about chatgpt and ai technologies.</p>
-                                    <a href="https://www.linkedin.com/posts/theraushan-kumar-gupta_as-you-all-know-that-blockchain-technology-activity-7122969014166859776-9KzE?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD__iUsBNJe3v-W7hDyyy-CNjSZ3pRxiVmE"
-                                        target="_blank" rel="noopener noreferrer">
-                                        <div class="btn border-primary text-primary p-2 ">Know More</div>
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- Year 5 -->
-                            <div class="timeline-item" data-aos="fade-up" data-aos-delay="600">
-                                <div class="timeline-dot"></div>
-                                <div class="timeline-content">
-                                    <h4>Oct 2023 - Nov 2023</h4>
-                                    <h5>NGO Proffesional</h5>
-                                    <p class="text-muted">Annashesh Social Welfare Society · Internship</p>
-                                    <p>Bhopal, Madhya Pradesh, India · On-site</p>
-                                    <p>Dedicated to helpless and committed to making a positive impact on society.
-                                        Experienced in healthcare & education sector
-                                        to the children.</p>
-                                    <a href="https://www.linkedin.com/feed/update/urn:li:activity:7122078595656613888?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base%3Bu0xT0mIlRwGdDPU%2BEg1O9w%3D%3D"
-                                        target="_blank" rel="noopener noreferrer">
-                                        <div class="btn border-primary text-primary p-2 ">Know More</div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- EXPERIENCE -->
-
-        <!-- REVIEWS -->
-        <!-- <section id="reviews" class="full-height px-lg-5">
-            <div class="container">
-
-                <div class="row pb-4" data-aos="fade-up">
-                    <div class="col-lg-8">
-                        <h6 class="text-brand">REVIEWS</h6>
-                        <h1>What our subscribers say</h1>
-                    </div>
-                </div>
-
-                <div class="row gy-4">
-
-                    <div class="col-md-4" data-aos="fade-up">
-
-                        <div class="review shadow-effect bg-base p-4 rounded-4">
-                            <div class="text-brand h5">
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                            </div>
-                            <p class="my-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel quae facilis fugiat molestias ab illum excepturi, qui optio modi asperiores, delectus maiores!</p>
-                            <div class="person">
-                                <h5 class="mb-0">Jon Doe</h5>
-                                <p class="mb-0">Twitter</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-
-                        <div class="review shadow-effect bg-base p-4 rounded-4">
-                            <div class="text-brand h5">
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                            </div>
-                            <p class="my-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel quae facilis fugiat molestias ab illum excepturi, qui optio modi asperiores, delectus maiores!</p>
-                            <div class="person">
-                                <h5 class="mb-0">Jon Doe</h5>
-                                <p class="mb-0">Twitter</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
-
-                        <div class="review shadow-effect bg-base p-4 rounded-4">
-                            <div class="text-brand h5">
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                                <i class="las la-star"></i>
-                            </div>
-                            <p class="my-3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel quae facilis fugiat molestias ab illum excepturi, qui optio modi asperiores, delectus maiores!</p>
-                            <div class="person">
-                                <h5 class="mb-0">Jon Doe</h5>
-                                <p class="mb-0">Twitter</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </section> -->
-        <!-- //REVIEWS -->
-
-        <!-- BLOG -->
-        <!-- <section id="blog" class="full-height px-lg-5">
-            <div class="container">
-
-                <div class="row pb-4" data-aos="fade-up">
-                    <div class="col-lg-8">
-                        <h6 class="text-brand">BLOG</h6>
-                        <h1>My BLog Posts</h1>
-                    </div>
-                </div>
-
-                <div class="row gy-4">
-
-                    <div class="col-md-4" data-aos="fade-up">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/blog-post-1.jpg" alt="">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <p class="text-brand mb-2">20 Dec, 2022</p>
-                                <h5 class="mb-4">Design a creative landing page using Bootstrap 5</h5>
-                                <a href="#" class="link-custom">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/blog-post-2.jpg" alt="">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <p class="text-brand mb-2">20 Dec, 2022</p>
-                                <h5 class="mb-4">Design a creative landing page using Bootstrap 5</h5>
-                                <a href="#" class="link-custom">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
-                        <div class="card-custom rounded-4 bg-base shadow-effect">
-                            <div class="card-custom-image rounded-4">
-                                <img class="rounded-4" src="./assets/images/blog-post-3.jpg" alt="">
-                            </div>
-                            <div class="card-custom-content p-4">
-                                <p class="text-brand mb-2">20 Dec, 2022</p>
-                                <h5 class="mb-4">Design a creative landing page using Bootstrap 5</h5>
-                                <a href="#" class="link-custom">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </section> -->
-        <!-- //BLOG -->
-
-        <!-- CONTACT -->
-        <section id="contact" class="full-height px-lg-5">
-            <div class="container">
-
-                <div class="row justify-content-center text-center">
-                    <div class="col-lg-8 pb-4" data-aos="fade-up">
-                        <h6 class="text-brand">CONTACT</h6>
-                        <h1>Interested in working together? Let's talk
-                        </h1>
-                    </div>
-
-                    <div class="col-lg-8" data-aos="fade-up" data-aos-delay="300">
-                        <form action="submit.php" method="POST" class="row g-lg-3 gy-3">
-                        <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="name" placeholder="Enter your name" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <input type="email" class="form-control" name="email" placeholder="Enter your email" required>
-                        </div>
-                        <div class="form-group col-12">
-                            <input type="tel" class="form-control" name="mobile" placeholder="Enter Mob. No." pattern="[0-9]{10}"
-                                required>
-                        </div>
-                        <div class="form-group col-12">
-                            <textarea name="message" rows="4" class="form-control" placeholder="Enter your message" required></textarea>
-                        </div>
-                        <div class="form-group col-12 d-grid">
-                            <button type="submit" class="btn btn-brand">Contact me</button>
-                        </div>
-                    </form>
-                    </div>
-                </div>
-
-
-            </div>
-        </section>
-        <!-- //CONTACT -->
-
-        <!-- FOOTER -->
-        <footer class="py-5 px-lg-5">
-            <div class="container">
-                <div class="row gy-4 justify-content-between">
-                    <div class="col-auto">
-                        <p class="mb-0">Designed by <a href="https://www.linkedin.com/in/theraushan-kumar-gupta" target="_blank" class="fw-bold text-decoration-underline">raushangupta</a></p>
-                    </div>
-                    <div class="col-auto">
-                        <div class="social-icons">
-                            <a href="https://www.linkedin.com/in/theraushan-kumar-gupta" target="_blank"
-                                rel="noopener noreferrer"><i class="lab la-linkedin"></i></a>
-                            <a href="https://x.com/Raushan97270863" target="_blank"><i class="lab la-twitter"></i></a>
-                            <a href="https://www.instagram.com/raushan.py/?next=%2F" target="_blank"><i
-                                    class="lab la-instagram"></i></a>
-
-                            <a href="https://youtube.com/@rkgupta784?si=jMTm7Sio5-LYKBEp" target="_blank"><i
-                                    class="lab la-youtube"></i></a>
-                                    <a href="https://github.com/raushangrkg123" target="_blank"><i class="lab la-github"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- //FOOTER -->
-
+  <div class="hero-inner">
+    <div class="hero-tag">👋 Available for work</div>
+    <h1 class="hero-name">Raushan Kumar<br><span>Gupta</span></h1>
+    <p class="hero-subtitle">Software Developer specializing in Laravel, PHP &amp; Frontend. Currently building government-grade web applications. <em id="dynamic-text"></em></p>
+    <div class="hero-btns">
+      <a href="#work" class="btn-primary">Explore My Work</a>
+      <a href="https://drive.google.com/file/d/1Qw_T4dSYgsvusaSkX8GGEp49cC4ZOA-5/view?usp=sharing" target="_blank" class="btn-outline">Download Resume ↗</a>
     </div>
-    <!-- //CONTENT WRAPPER -->
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span>scroll</span></div>
+</section>
 
-    <script src="./assets/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/js/aos.js"></script>
-    <script src="./assets/js/main.js"></script>
-    <!-- 🔥 THREE JS (3D background) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Services</div>
+      <h2 class="section-title">Services That <em>I Provide</em></h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay1">
+        <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+        <h3>Web Development</h3>
+        <p>I develop user-interacting and responsive designs which look better with quality craftsmanship.</p>
+        <a href="https://www.linkedin.com/in/theraushan-kumar-gupta" target="_blank">Learn More →</a>
+      </div>
+      <div class="service-card reveal reveal-delay2">
+        <div class="service-icon"><i class="fas fa-palette"></i></div>
+        <h3>Canva Design</h3>
+        <p>I design stunning visuals on Canva, creating professional graphics for social media.</p>
+        <a href="https://www.canva.com/design/DAGYl3-WknE/MRQ1iPoEGDyyRyPY3lGiDg/edit" target="_blank">Learn More →</a>
+      </div>
+      <div class="service-card reveal reveal-delay3">
+        <div class="service-icon"><i class="fas fa-users"></i></div>
+        <h3>Campus Ambassador</h3>
+        <p>Representing tech organizations on campus, bridging students with real-world opportunities.</p>
+        <a href="https://www.linkedin.com/posts/theraushan-kumar-gupta_hey-everyone-i-am-happy-to-share-that-activity-7108124156604379138-ktup" target="_blank">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- WORK -->
+<section id="work">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Work</div>
+      <h2 class="section-title">My Recent <em>Projects</em></h2>
+    </div>
+    <div class="work-grid">
+      <div class="work-card reveal reveal-delay1">
+        <div class="work-card-img"><img src="./assets/images/project1.png" alt="Talent Synergy Solutions"></div>
+        <div class="work-card-body">
+          <div class="work-tag">HR & Consulting</div>
+          <h3>Talent Synergy Solutions</h3>
+          <p>A premier talent consulting firm specializing in workforce optimization and strategic HR solutions to drive business success.</p>
+          <a href="https://talent-synergy.com/" target="_blank">View Project →</a>
+        </div>
+      </div>
+      <div class="work-card reveal reveal-delay2">
+        <div class="work-card-img"><img src="./assets/images/project2.png" alt="Diamond Star Group"></div>
+        <div class="work-card-body">
+          <div class="work-tag">Industry</div>
+          <h3>Diamond Star Group</h3>
+          <p>A coalition of companies committed to revolutionizing the recycling industry through innovative technology.</p>
+          <a href="https://diamondstargrp.com/en/" target="_blank">View Project →</a>
+        </div>
+      </div>
+      <div class="work-card reveal reveal-delay1">
+        <div class="work-card-img"><img src="./assets/images/project3.png" alt="SeS IT Ecommerce"></div>
+        <div class="work-card-body">
+          <div class="work-tag">E-Commerce</div>
+          <h3>SeS IT Ecommerce</h3>
+          <p>An e-commerce web app with features like product browsing and order tracking, offering a user-friendly shopping experience.</p>
+          <a href="https://raushangrkg123.github.io/Ses-IT-project-/" target="_blank">View Project →</a>
+        </div>
+      </div>
+      <div class="work-card reveal reveal-delay2">
+        <div class="work-card-img"><img src="./assets/images/project4.png" alt="Swastih Digital"></div>
+        <div class="work-card-body">
+          <div class="work-tag">Agency</div>
+          <h3>Swastih Digital Pvt. Ltd.</h3>
+          <p>Better Solutions For Your Problems — a team of talented people making solutions with Swastih Digital Private Limited.</p>
+          <a href="https://www.swastihdigital.com/" target="_blank">View Project →</a>
+        </div>
+      </div>
+      <div class="work-card reveal reveal-delay1">
+        <div class="work-card-img"><img src="./assets/images/project5.png" alt="Octanet Landing Page"></div>
+        <div class="work-card-body">
+          <div class="work-tag">Landing Page</div>
+          <h3>Octanet Landing Page</h3>
+          <p>A landing page created for Octanet Services Pvt. Ltd. using Bootstrap 5 with a clean, modern layout.</p>
+          <a href="https://raushangrkg123.github.io/OCTANET_AUGUST/" target="_blank">View Project →</a>
+        </div>
+      </div>
+      <div class="work-card reveal reveal-delay2">
+        <div class="work-card-img"><img src="./assets/images/project6.png" alt="TO-DO List"></div>
+        <div class="work-card-body">
+          <div class="work-tag">Web App</div>
+          <h3>TO-DO List</h3>
+          <p>A to-do list where you can add, update and delete tasks. Built with the Bootstrap framework.</p>
+          <a href="https://raushangrkg123.github.io/TO-DO-LIST/" target="_blank">View Project →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">About</div>
+      <h2 class="section-title">A bit <em>About Me</em></h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <div class="about-bio reveal">
+          <p>Software Developer with experience in Laravel, PHP, frontend, and AI. Worked on government projects including WCD and Defence portals. Passionate about building secure, reliable, and efficient digital services.</p>
+        </div>
+        <div class="skills-section reveal">
+          <h3>Skills</h3>
+          <div class="skills-wrap">
+            <span class="skill-pill">Laravel</span>
+            <span class="skill-pill">PHP</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">Bootstrap</span>
+            <span class="skill-pill">HTML</span>
+            <span class="skill-pill">CSS</span>
+            <span class="skill-pill">PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:var(--font-head);font-size:1rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem" class="reveal">Education</h3>
+        <div class="edu-list">
+          <div class="edu-item reveal reveal-delay1">
+            <h4>Bachelor Of Technology</h4>
+            <div class="edu-meta">SISTec, Ratibad, Bhopal (2020 – 2024)</div>
+            <p>Electronics &amp; Communication Engg. &nbsp;·&nbsp; CGPA: 8.52</p>
+          </div>
+          <div class="edu-item reveal reveal-delay2">
+            <h4>Class XII</h4>
+            <div class="edu-meta">Jagdam College, Bihar (2018 – 2020)</div>
+            <p>Maths &nbsp;·&nbsp; 82.8%</p>
+          </div>
+          <div class="edu-item reveal reveal-delay3">
+            <h4>Class X</h4>
+            <div class="edu-meta">Marhaura High School, Bihar (2017 – 2018)</div>
+            <p>Science &nbsp;·&nbsp; 76.2%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Experience</div>
+      <h2 class="section-title">My Journey <em>So Far</em></h2>
+    </div>
+    <div style="max-width:700px;margin:0 auto">
+      <div class="timeline">
+
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">Jan 2026 – Present</div>
+            <div class="tl-role">Software Developer</div>
+            <div class="tl-company">Silver Touch Technologies Ltd.</div>
+            <div class="tl-location"><i class="fas fa-map-marker-alt" style="font-size:.7rem"></i> New Delhi, India · On-site</div>
+            <p class="tl-desc">Working at the Ministry of Women and Child Development (WCD) under the Ministry of Home Affairs. Contributing to development, maintenance, and real-time management of government web applications, ensuring secure and reliable digital services.</p>
+            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7438510980940156929/" target="_blank" class="tl-link">Know More ↗</a>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">May 2025 – Jan 2026</div>
+            <div class="tl-role">Software Developer</div>
+            <div class="tl-company">Akal Info. Systems Ltd.</div>
+            <div class="tl-location"><i class="fas fa-map-marker-alt" style="font-size:.7rem"></i> New Delhi, India · On-site</div>
+            <p class="tl-desc">Worked on the Gallantry Awards Portal at the Ministry of Defence (NIC). Contributed to development, maintenance, and optimization ensuring reliable performance and secure data handling for government operations.</p>
+            <a href="https://www.gallantryawards.gov.in/" target="_blank" class="tl-link">Know More ↗</a>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">Feb 2024 – March 2025</div>
+            <div class="tl-role">Web Developer</div>
+            <div class="tl-company">Swastih Digital Private Limited · Internship</div>
+            <div class="tl-location"><i class="fas fa-map-marker-alt" style="font-size:.7rem"></i> Bhopal, MP, India · On-site</div>
+            <p class="tl-desc">Worked as a Team Lead gaining technical experience in web development, focusing on building responsive websites and conducted interviews.</p>
+            <a href="https://drive.google.com/file/d/1-oNRFqDh5V_yOnuSzs-wF9aq7It7UUq9/view?usp=drivesdk" target="_blank" class="tl-link">Know More ↗</a>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">Dec 2023 – May 2024</div>
+            <div class="tl-role">Supporting Diatoms for a Cooler Tomorrow</div>
+            <div class="tl-company">Liquid Trees · Internship</div>
+            <div class="tl-location"><i class="fas fa-map-marker-alt" style="font-size:.7rem"></i> India · Remote</div>
+            <p class="tl-desc">Campaign focused on raising awareness about the potential of micro algae (Diatoms) in CO2 removal and Bioremediation to keep the planet cool.</p>
+            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7159206441084448768" target="_blank" class="tl-link">Know More ↗</a>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">Oct 2023 – Dec 2023</div>
+            <div class="tl-role">Campus Ambassador</div>
+            <div class="tl-company">Metakraft AI · Internship</div>
+            <div class="tl-location"><i class="fas fa-map-marker-alt" style="font-size:.7rem"></i> Bengaluru, Karnataka · Remote</div>
+            <p class="tl-desc">Learned Graphics Designing and Prompt Engineering. As a prompt intern, explored ChatGPT and AI technologies, including blockchain fundamentals.</p>
+            <a href="https://www.linkedin.com/posts/theraushan-kumar-gupta_as-you-all-know-that-blockchain-technology-activity-7122969014166859776-9KzE" target="_blank" class="tl-link">Know More ↗</a>
+          </div>
+        </div>
+
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-date">Oct 2023 – Nov 2023</div>
+            <div class="tl-role">NGO Professional</div>
+            <div class="tl-company">Annashesh Social Welfare Society · Internship</div>
+            <div class="tl-location"><i class="fas fa-map-marker-alt" style="font-size:.7rem"></i> Bhopal, MP, India · On-site</div>
+            <p class="tl-desc">Dedicated to helpless individuals and committed to making a positive impact on society. Gained experience in healthcare &amp; education sectors serving children.</p>
+            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7122078595656613888" target="_blank" class="tl-link">Know More ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrapper">
+      <div class="reveal">
+        <div class="section-label">Contact</div>
+        <h2 class="section-title">Let's Work <em>Together</em></h2>
+        <p class="contact-sub">Interested in working together? Fill out the form below and I'll get back to you shortly.</p>
+      </div>
+      <div class="contact-form reveal">
+        <form action="submit.php" method="POST">
+          <div class="form-row">
+            <div class="form-group"><input type="text" name="name" placeholder="Your name" required></div>
+            <div class="form-group"><input type="email" name="email" placeholder="Your email" required></div>
+          </div>
+          <div class="form-group"><input type="tel" name="mobile" placeholder="Mobile number" pattern="[0-9]{10}" required></div>
+          <div class="form-group"><textarea name="message" rows="4" placeholder="Your message" required></textarea></div>
+          <button type="submit" class="form-submit">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <p class="footer-copy">Designed &amp; built by <a href="https://www.linkedin.com/in/theraushan-kumar-gupta" target="_blank">Raushan Gupta</a></p>
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/theraushan-kumar-gupta" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://x.com/Raushan97270863" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.instagram.com/raushan.py/" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://youtube.com/@rkgupta784" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://github.com/raushangrkg123" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// MOBILE NAV
+const navBtn=document.getElementById('navBtn');
+const navLinks=document.getElementById('navLinks');
+navBtn.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+// DYNAMIC TEXT
+const roles=['Web Developer','Laravel Developer','PHP Developer','UI/UI Designer','Problem Solver'];
+let ri=0,ci=0,del=false;
+const el=document.getElementById('dynamic-text');
+function type(){
+  const cur=roles[ri];
+  el.textContent=del?cur.slice(0,ci--):cur.slice(0,ci++);
+  if(!del&&ci>cur.length){setTimeout(()=>{del=true},1200);return setTimeout(type,50)}
+  if(del&&ci<0){del=false;ri=(ri+1)%roles.length;return setTimeout(type,400)}
+  setTimeout(type,del?40:80);
+}
+type();
+
+// SCROLL REVEAL
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// ACTIVE NAV HIGHLIGHT
+const sections=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-100)cur=s.id});
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.style.color=a.getAttribute('href')==='#'+cur?'var(--accent2)':'';
+  });
+});
+</script>
 </body>
-
 </html>
