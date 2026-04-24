@@ -63,8 +63,8 @@
 
         <!-- HOME -->
         <section id="home" class="full-height px-lg-5">
-  <h1 class="glow">👋 Raushan Kumar Gupta</h1>
-              <p id="typing"></p>
+  <h1 class="glow white">👋 Raushan Kumar Gupta</h1>
+            
             <div class="container">
 
                 <div class="row">
@@ -645,52 +645,7 @@ target="_blank" rel="noopener noreferrer">
     <script src="./assets/js/main.js"></script>
     <!-- 🔥 THREE JS (3D background) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-// 🔥 TYPING TEXT
-const text = "Software Developer | Laravel | Frontend";
-let i = 0;
-function typing() {
-  if (i < text.length) {
-    document.getElementById("typing").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typing, 50);
-  }
-}
-typing();
 
-// 🔥 3D BACKGROUND
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-
-const renderer = new THREE.WebGLRenderer({
-  canvas: document.querySelector('#bg'),
-});
-renderer.setSize(window.innerWidth, window.innerHeight);
-
-// 🔥 CHANGE SHAPE HERE
-const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-
-// 🔥 CHANGE COLOR HERE
-const material = new THREE.MeshStandardMaterial({ color: 0x00ffff });
-
-const object = new THREE.Mesh(geometry, material);
-scene.add(object);
-
-const light = new THREE.PointLight(0xffffff);
-light.position.set(20, 20, 20);
-scene.add(light);
-
-camera.position.z = 30;
-
-// 🔥 ANIMATION
-function animate() {
-  requestAnimationFrame(animate);
-  object.rotation.x += 0.01;
-  object.rotation.y += 0.01;
-  renderer.render(scene, camera);
-}
-animate();
-</script>
 </body>
 
 </html>
