@@ -310,3 +310,127 @@ h3 {
     font-size: 24px;
 }
 
+
+/* 🔥 GLOBAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(45deg, #0f172a, #020617);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* 🔥 3D CANVAS */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/* 🔥 NAVBAR */
+nav {
+  position: fixed;
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+nav a {
+  margin: 0 15px;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: cyan;
+  text-shadow: 0 0 10px cyan;
+}
+
+/* 🔥 SECTION */
+section {
+  min-height: 100vh;
+  padding: 120px 20px;
+  text-align: center;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* 🔥 HEADINGS */
+h1, h2 {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 42px;
+}
+
+/* 🔥 CARD (GLASS UI) */
+.card {
+  background: rgba(255,255,255,0.08);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  margin: 20px auto;
+  max-width: 800px;
+  transition: 0.4s;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.card:hover {
+  transform: scale(1.08) rotateY(5deg);
+  box-shadow: 0 10px 40px rgba(0,255,255,0.5);
+}
+
+/* 🔥 SKILLS */
+.skills span {
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  background: #1e293b;
+  border-radius: 10px;
+  border: 1px solid #38bdf8;
+  transition: 0.3s;
+}
+
+.skills span:hover {
+  background: #38bdf8;
+  color: black;
+}
+
+/* 🔥 BUTTON */
+.btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: cyan;
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background: white;
+}
+
+/* 🔥 GLOW TEXT */
+.glow {
+  color: cyan;
+  text-shadow: 0 0 10px cyan, 0 0 20px cyan;
+}
+
