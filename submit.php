@@ -1,28 +1,26 @@
 <?php
-include 'config.php';  // Database Connection
+// Database connection
+$conn = pg_connect("host=localhost dbname=portfolio_db user=postgres password=yourpassword");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $mobile = $_POST['mobile'];
-    $message = $_POST['message'];
+if (!$conn) {
+    die("Connection failed");
+}
 
-    // Prevent SQL Injection
-    $name = mysqli_real_escape_string($conn, $name);
-    $email = mysqli_real_escape_string($conn, $email);
-    $mobile = mysqli_real_escape_string($conn, $mobile);
-    $message = mysqli_real_escape_string($conn, $message);
+// Get form data
+$name = $_POST['name'];
+$email = $_POST['email'];
+$mobile = $_POST['mobile'];
+$message = $_POST['message'];
 
-    // Insert Data
-    $sql = "INSERT INTO contacts (name, email, mobile, message) 
-            VALUES ('$name', '$email', '$mobile', '$message')";
+// Insert query
+$query = "INSERT INTO contact_messages (name, email, mobile, message) 
+          VALUES ($1, $2, $3, $4)";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Message sent successfully!";
-    } else {
-        echo "Error: " . $conn->error;
-    }
+$result = pg_query_params($conn, $query, array($name, $email, $mobile, $message));
 
-    $conn->close();
+if ($result) {
+    echo "Message sent successfully!";
+} else {
+    echo "Error occurred!";
 }
 ?>
